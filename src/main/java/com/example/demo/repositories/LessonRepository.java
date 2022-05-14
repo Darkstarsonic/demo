@@ -16,4 +16,7 @@ public interface LessonRepository extends JpaRepository<Lesson,Long> {
     public Optional<Lesson> findByTeacherAndSubjectAndTimeSlot(User teacher, Subject subject, TimeSlot timeSlot);
 
     boolean existsByTeacherAndTimeSlot(User teacher, TimeSlot timeSlot);
+
+    public List<Lesson> findLessonsByStudent(User student);
+    public List<Lesson> findLessonsByTeacher(User teacher);
 }

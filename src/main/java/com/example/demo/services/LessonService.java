@@ -1,6 +1,8 @@
 package com.example.demo.services;
 
 import com.example.demo.DTO.CreateLessonRequest;
+import com.example.demo.DTO.LessonResponse;
+import com.example.demo.DTO.UserResponse;
 import com.example.demo.model.*;
 import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.management.InstanceAlreadyExistsException;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LessonService {
@@ -30,7 +34,7 @@ public class LessonService {
         this.timeSlotRepository = timeSlotRepository;
     }
 
-    public void CreateLesson(CreateLessonRequest createLessonRequest) throws InstanceAlreadyExistsException{
+    public void createLesson(CreateLessonRequest createLessonRequest) throws InstanceAlreadyExistsException {
         Integer startTime = Integer.parseInt(createLessonRequest.getTimeSlot().substring(0, 2));
         TimeSlot timeSlot = timeSlotRepository.findByStartAt(startTime);
         User student = userRepository.findById(createLessonRequest.getStudentId()).get();
@@ -55,5 +59,11 @@ public class LessonService {
         userRepository.save(student);
         teacher.getTimeSlots().add(timeSlot);
         userRepository.save(teacher);
+    }
+
+    public List<LessonResponse> getLessonsStudent(CreateLessonRequest createLessonRequest) {
+        User student = userRepository.findById(createLessonRequest.getStudentId()).get();
+        List<Lesson> lessons = lessonRepository.findLessonsByStudent(student);
+        return lessons.stream().map(LessonResponse::new).collect(Collectors.toList());
     }
 }

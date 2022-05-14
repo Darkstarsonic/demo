@@ -6,8 +6,7 @@ import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Data

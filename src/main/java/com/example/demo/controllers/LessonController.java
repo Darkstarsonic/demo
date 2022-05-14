@@ -28,7 +28,7 @@ public class LessonController {
     @PostMapping(path = "/createLesson")
     public ResponseEntity<?> CreateLesson(@RequestBody CreateLessonRequest createLessonRequest) {
         try {
-            lessonService.CreateLesson(createLessonRequest);
+            lessonService.createLesson(createLessonRequest);
         } catch (InstanceAlreadyExistsException ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
