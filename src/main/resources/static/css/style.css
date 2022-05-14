@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #212529;
+}
+
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.form {
+    text-align: center;
+    margin: 30px auto 0;
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #212529;
+    border-radius: 4px;
+}
+
+.header {
+    background-color: #212529;
+    padding: 1rem;
+}
+
+.header > .container {
+    display: flex;
+}
+
+.header-nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-menu-links {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-reg {
+    display: flex;
+    margin-left: auto;
+}
+
+.logo {
+    align-self: center;
+    height: 32px;
+    border-radius: 30px;
+}
+
+.header-logo-link {
+    display: flex;
+    height: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.header-nav-menu-link {
+    padding: 8px;
+    color: #ffffff;
+}
+
+
+.header-nav-reg-item {
+    margin-right: 8px;
+}
+
+.header-nav-reg-item:first-child {
+    align-self: center;
+}
+
+.profile-button {
+    color: #ffffff;
+}
+
+.logout-button {
+    color: #ffc107;
+}
+
+.header-search {
+    background-color: #212529;
+    border: 1px solid #6c757d;
+    padding: 6px 12px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.header-button {
+    padding: 6px 12px;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.login {
+    color: #f8f9fa;
+}
+
+.login:hover {
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    color: #000000;
+}
+
+.sign-up {
+    color: #000000;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.sign-up:hover {
+    background-color: #ffca2c;
+    border-color: #ffc720;
+}
+
+.registration > .container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-registration {
+    margin-top: 25px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #212529;
+}
+
+.form-registration-input {
+    display: block;
+    padding: 6px 8px;
+    width: 500px;
+    color: #000000;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+.form-registration-input:not(:first-child) {
+    margin-top: 25px;
+}
+
+.form-registration-button {
+    display: inline-block;
+    margin-top: 30px;
+    border: 1px solid #ffc107;
+    font-size: 18px;
+    background-color: #ffc107;
+    color: #212529;
+    transition: .3s;
+}
+
+.form-registration-button:hover {
+    border-color: #ffc720;
+    background-color: #ffca2c;
+}
+
+.failed {
+    margin-top: 15px;
+}
+
+.failed > .container {
+    text-align: center;
+}
+
+.failed_registration_text {
+    color: crimson;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.create-article {
+    margin-top: 30px;
+}
+
+.create-article > .container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-create-article {
+    width: 400px;
+}
+
+.form-create-article-input {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #212529;
+    color: black;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.form-create-article > select > option {
+    color: black;
+}
+
+.form-create-article-input:not(:first-child) {
+    margin-top: 15px;
+}
+
+.form-create-article-button {
+    margin-top: 15px;
+    font-size: 18px;
+    color: white;
+    padding: 8px 12px;
+    background-color: #212529;
+    border-color: white;
+    width: 100%;
+}
+
+.form-create-article-button:hover {
+    background-color: white;
+    border-color: #212529;
+    color: #212529;
+}
+
+.form-article-content {
+    height: 200px;
+    overflow: auto;
+    resize: none;
+}
+
+.forms > .container {
+    display: flex;
+}
+
+
+.form-input {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-weight: 400;
+    color: #212529;
+}
+
+.form-input:not(:first-child) {
+    margin-top: 15px;
+}
+
+.form > span {
+    color: #212529;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.form-button {
+    margin-top: 15px;
+    width: 100%;
+    font-size: 18px;
+    background-color: #4574a3;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #385c80;
+    border: 1px solid #385c80;
+}
+
+.profile {
+    width: 400px;
+    margin: 15px auto 0;
+    padding: 15px;
+    border: 1px solid #212529;
+}
+
+.profile > div {
+    position: relative;
+    color: #4574a3;
+}
+
+.profile > div:not(:first-child) {
+    margin-top: 5px;
+}
+
+.profile > div > span {
+    color: #212529;
+}
+
+.profile > div > span > a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #212529;
+    transition: .3s;
+}
+
+.profile > div > span > a:hover {
+    text-decoration: underline;
+    color: #ffc107;
+}
+
+.profile-articles:not(:first-child) {
+    display: block;
+    margin-left: 67px;
+    margin-top: 2px;
+}
+
+.frame {
+    width: 970px;
+    padding: 15px;
+    margin: 15px auto 0;
+    border: 1px solid #212529;
+}
+
+.article-content > div {
+    color: #212529;
+}
+
+.article-content > div:not(:first-child) {
+    margin-top: 5px;
+}
+
+.article-comment-content {
+    width: 100%;
+    height: 100px;
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid #212529;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    overflow: auto;
+    resize: none;
+}
+
+.article-comment-button {
+    display: block;
+    margin-top: 15px;
+    font-size: 18px;
+    color: white;
+    padding: 8px 12px;
+    background-color: #212529;
+    border-color: white;
+}
+
+.article-comment-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article-comments-list > div {
+    color: #212529;
+    font-size: 16px;
+}
+
+.article-comments-list > div:not(:last-child) {
+    margin-top: 5px;
+}
+
+.article-comments-list > div:last-child {
+    font-size: 10px;
+}
+
+.article-comments-list:not(:first-child) {
+    margin-top: 10px;
+}
+
+.article-comments-span {
+    display: block;
+    color: #212529;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.article-rate-button {
+    display: block;
+    margin-top: 15px;
+    font-size: 18px;
+    color: white;
+    padding: 8px 12px;
+    background-color: #212529;
+    border-color: white;
+}
+
+.rate-select {
+    height: 25px;
+}
