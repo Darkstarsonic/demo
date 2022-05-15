@@ -21,26 +21,24 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserService {
-    final UserRepository userRepository;
-    final InstrumentalRepository instrumentalRepository;
-    final LessonRepository lessonRepository;
-    final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final InstrumentalRepository instrumentalRepository;
+    private final RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private JWTUtil jwtUtil;
 
     @Autowired
-    public UserService(UserRepository userRepository, InstrumentalRepository instrumentalRepository,
-                       LessonRepository lessonRepository, RoleRepository roleRepository,
+    public UserService(UserRepository userRepository, InstrumentalRepository instrumentalRepository, RoleRepository roleRepository,
                        PasswordEncoder passwordEncoder, JWTUtil jwtUtil) {
         this.userRepository = userRepository;
         this.instrumentalRepository = instrumentalRepository;
-        this.lessonRepository = lessonRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
     }
 
-    public boolean createStudent(String email, String password, String fullName, Long instrumentId) {
+    @org.springframework.transaction.annotation.Transactional
+    public void createStudent(String email, String password, String fullName, Long instrumentId) {
         User student = new User();
         student.setInstrumental(instrumentalRepository.getById(instrumentId));
         student.setEmail(email);
@@ -49,7 +47,6 @@ public class UserService {
         student.setRole(roleRepository.getById(3L));
 
         userRepository.save(student);
-        return true;
     }
 
     public void createTeacher(RegistrationRequest registrationRequest) {
@@ -75,9 +72,7 @@ public class UserService {
     public List<UserResponse> getByRoleIdAndInstrumentId(Long roleId, Long instrumentId) {
         Role role = roleRepository.findById(roleId).get();
         Instrumental instrumental = instrumentalRepository.findById(instrumentId).get();
-        List<User> users =  userRepository.findAllByInstrumentalAndRole(instrumental, role);
+        List<User> users = userRepository.findAllByInstrumentalAndRole(instrumental, role);
         return users.stream().map(UserResponse::new).collect(Collectors.toList());
     }
-
-
 }

@@ -18,7 +18,7 @@ public class Lesson {
     private Long id;
 
     @ManyToMany
-    private List<User> students;
+    private List<User> users;
 
     @ManyToOne
     private User teacher;
@@ -28,15 +28,4 @@ public class Lesson {
 
     @ManyToOne
     private TimeSlot timeSlot;
-
-    public Lesson(User teacher, Subject subject, TimeSlot timeSlot) {
-        this.teacher = teacher;
-        this.students = new ArrayList<>();
-        this.subject = subject;
-        this.timeSlot = timeSlot;
-    }
-
-    public void addStudent(User student) {
-        this.students.add(student);
-    }
 }

@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
 import com.example.demo.DTO.CreateLessonRequest;
+import com.example.demo.DTO.LessonResponse;
+import com.example.demo.model.Lesson;
 import com.example.demo.model.TimeSlot;
 import com.example.demo.repositories.*;
 import com.example.demo.services.LessonService;
@@ -15,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/lesson")
 public class LessonController {
-    private  final LessonService lessonService;
+    private final LessonService lessonService;
 
     private final TimeSlotService timeSlotService;
 
@@ -36,7 +38,12 @@ public class LessonController {
     }
 
     @GetMapping("/getAllTimeSlot")
-    public List<TimeSlot> getAllTimeSlot(){
+    public List<TimeSlot> getAllTimeSlot() {
         return timeSlotService.getAllTimeSlot();
+    }
+
+    @GetMapping("/schedule/{id}")
+    public List<Lesson> getLessonStudent(@PathVariable(name = "id") Long studentId) {
+        return lessonService.getLessonsStudent(studentId);
     }
 }

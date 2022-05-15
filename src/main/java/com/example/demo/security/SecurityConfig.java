@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     cors.setAllowedHeaders(List.of("*"));
                     return cors;
                 }).and().csrf().disable()
-                .authorizeRequests().antMatchers("/authorization/registration", "/authorization/login").permitAll()
+                .authorizeRequests().antMatchers("/authorization/registration", "/authorization/login", "/instrument/getAllInstruments").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
