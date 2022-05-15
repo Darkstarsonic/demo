@@ -49,9 +49,10 @@ public class UserService {
         userRepository.save(student);
     }
 
+    @org.springframework.transaction.annotation.Transactional
     public void createTeacher(RegistrationRequest registrationRequest) {
         User teacher = new User();
-        teacher.setInstrumental(instrumentalRepository.findByName(registrationRequest.getInstrument()));
+        teacher.setInstrumental(instrumentalRepository.getById(registrationRequest.getInstrument()));
         teacher.setEmail(registrationRequest.getEmail());
         teacher.setFullName(registrationRequest.getFullName());
         teacher.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));

@@ -43,7 +43,7 @@ public class LessonController {
     }
 
     @GetMapping("/schedule/{id}")
-    public List<Lesson> getLessonStudent(@PathVariable(name = "id") Long studentId) {
+    public List<LessonResponse> getLessonStudent(@PathVariable(name = "id") Long studentId) {
         return lessonService.getLessonsStudent(studentId);
     }
 }

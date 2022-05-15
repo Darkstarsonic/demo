@@ -19,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping(path = "/authorization")
@@ -44,13 +46,13 @@ public class AuthorizationController {
     @PostMapping("/registration")
     public ResponseEntity<?> proceedRegistration(@RequestBody RegistrationRequest registrationRequest) {
         log.info("Registration");
-        if (userRepository.existsByEmail(registrationRequest.getEmail()) || !instrumentalRepository.existsByName(registrationRequest.getInstrument())) {
+        if (userRepository.existsByEmail(registrationRequest.getEmail())) {
             return ResponseEntity.badRequest().body("User already exists or no such instrument.");
         }
-        Instrumental instrumental = instrumentalRepository.findByName(registrationRequest.getInstrument());
-        if(registrationRequest.getRole() == 3L)
-            userService.createStudent(registrationRequest.getEmail(), registrationRequest.getPassword(), registrationRequest.getFullName(), instrumental.getId());
-        else if(registrationRequest.getRole() == 2L)
+        Optional<Instrumental> instrumental = instrumentalRepository.findById(registrationRequest.getInstrument());
+        if (registrationRequest.getRole() == 3L)
+            userService.createStudent(registrationRequest.getEmail(), registrationRequest.getPassword(), registrationRequest.getFullName(), instrumental.get().getId());
+        else if (registrationRequest.getRole() == 2L)
             userService.createTeacher(registrationRequest);
         return ResponseEntity.ok("Success.");
     }

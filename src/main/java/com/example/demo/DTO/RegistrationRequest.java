@@ -7,6 +7,6 @@ public class RegistrationRequest {
     private String email;
     private String fullName;
     private String password;
-    private String instrument;
+    private Long instrument;
     private Long role;
 }

@@ -10,6 +10,9 @@ import java.util.List;
 
 @Data
 public class LessonResponse {
-    private Lesson lesson;
+
+    private String subject;
+    private String teacher;
+    private String timeSlot;
 
 }

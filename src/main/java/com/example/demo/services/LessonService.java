@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.DTO.CreateLessonRequest;
+import com.example.demo.DTO.LessonResponse;
 import com.example.demo.model.*;
 import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.InstanceAlreadyExistsException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LessonService {
@@ -65,11 +68,15 @@ public class LessonService {
         userRepository.save(teacher);
     }
 
-    public List<Lesson> getLessonsStudent(Long studentId) {
+    public List<LessonResponse> getLessonsStudent(Long studentId) {
         Optional<User> user = userRepository.findById(studentId);
-
-        return user.map(value -> lessonRepository.findLessonsByUsersIn(new ArrayList<>() {{
-            add(value);
-        }})).orElse(null);
+        List<Lesson> lessonsByUsersIn = lessonRepository.findLessonsByUsersIn(Collections.singletonList(user.get()));
+        return lessonsByUsersIn.stream().map(lesson -> {
+            LessonResponse lessonResponse = new LessonResponse();
+            lessonResponse.setSubject(lesson.getSubject().getName());
+            lessonResponse.setTeacher(lesson.getTeacher().getFullName());
+            lessonResponse.setTimeSlot(lesson.getTimeSlot().getStartAt() + ":00 - " + lesson.getTimeSlot().getEndAt() + ":00");
+            return lessonResponse;
+        }).collect(Collectors.toList());
     }
 }
